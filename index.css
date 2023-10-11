@@ -130,7 +130,7 @@ button {
     text-decoration: underline;
 }
 
-/* Add media queries for responsiveness */
+/* responsive */
 
 @media (max-width: 768px) {
     .form-box {
