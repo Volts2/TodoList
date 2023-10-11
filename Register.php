@@ -8,28 +8,35 @@
     <section>
         <div class="form-box">
             <div class="form-value">
-                <form action="">
+                <form action="" method="post">
                     <h2>Register</h2>
                     <div class="inputbox">
-                    <ion-icon name="person-outline"></ion-icon>
-                        <input type="Username" required>
+                        <ion-icon name="person-outline"></ion-icon>
+                        <input type="text" required name="username" id="username">
                         <label for="">Username</label>
                     </div>
                     <div class="inputbox">
-                    <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" required>
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" required name="email" id="email">
                         <label for="">Email</label>
                     </div>
                     <div class="inputbox">
-                    <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" required>
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" required name="password" id="password">
                         <label for="">Password</label>
                     </div>
-                    <button>Register</button>
+                    <button id="registerButton" type="submit">Register</button>
                     <div class="register">
-                        <p>have a account <a href="index.php">Login</a></p>
+                        <p>have an account <a href="index.php">Login</a></p>
                     </div>
                 </form>
+                <?php
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $username = $_POST["username"];
+                    $email = $_POST["email"];
+                    $password = $_POST["password"];
+                }
+                ?>
             </div>
         </div>
     </section>
