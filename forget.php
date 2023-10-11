@@ -2,33 +2,36 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="index.css">
-  <title>Login</title>
+  <title>Change Password</title>
 </head>
 <body>
     <section>
         <div class="form-box">
             <div class="form-value">
-                <form action="">
-                    <h2>Login</h2>
+                <form action="" method="post">
+                    <h2>Change Password</h2>
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" required name="email">
+                        <input type="email" required name="email" id="email">
                         <label for="">Email</label>
                     </div>
                     <div class="inputbox">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" required name="password">
-                        <label for="">Password</label>
+                        <input type="password" required name="password" id="password">
+                        <label for="">New Password</label>
                     </div>
-                    <div class="forget">
-                        <label> <a href="forget.php">Forget Password</a> </label>
-                      
-                    </div>
-                    <button id="loginButton" type="submit">Login</button>
+                    <button id="registerButton" type="submit">Register</button>
                     <div class="register">
-                        <p>Don't have a account <a href="Register.php">Register</a></p>
+                        <p>have an account <a href="index.php">Login</a></p>
                     </div>
                 </form>
+                <?php
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $username = $_POST["username"];
+                    $email = $_POST["email"];
+                    $password = $_POST["password"];
+                }
+                ?>
             </div>
         </div>
     </section>
