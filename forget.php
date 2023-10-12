@@ -20,9 +20,9 @@
                         <input type="password" required name="password" id="password">
                         <label for="">New Password</label>
                     </div>
-                    <button id="registerButton" type="submit">Register</button>
+                    <button id="registerButton" type="submit">Change</button>
                     <div class="register">
-                        <p>have an account <a href="index.php">Login</a></p>
+                        <p><a href="index.php">Login</a></p>
                     </div>
                 </form>
                 <?php
