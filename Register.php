@@ -1,3 +1,37 @@
+<?php
+$host = "localhost"; 
+$username = "root"; 
+$password = "1"; 
+$database = "login"; 
+
+$conn = mysqli_connect($host, $username, $password, $database);
+
+if (!$conn) {
+    die("Koneksi gagal: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    $checkQuery = "SELECT * FROM tb_user WHERE username = '$username' OR email = '$email'";
+    $result = mysqli_query($conn, $checkQuery);
+
+    if (mysqli_num_rows($result) > 0) {
+    } else {
+        $sql = "INSERT INTO tb_user (username, email, password) VALUES ('$username', '$email', '$password')";
+
+        if (mysqli_query($conn, $sql)) {
+
+        } else {
+            $errorMessage = "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }        
+    }
+}
+mysqli_close($conn);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +42,7 @@
     <section>
         <div class="form-box">
             <div class="form-value">
-                <form action="" method="post">
+                <form action="Register.php" method="post">
                     <h2>Register</h2>
                     <div class="inputbox">
                         <ion-icon name="person-outline"></ion-icon>
@@ -25,18 +59,11 @@
                         <input type="password" required name="password" id="password">
                         <label for="">Password</label>
                     </div>
-                    <button id="registerButton" type="submit">Register</button>
+                    <button id="registerButton" type="submit" name="registerButton">Register</button>
                     <div class="register">
                         <p>have an account <a href="index.php">Login</a></p>
                     </div>
                 </form>
-                <?php
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    $username = $_POST["username"];
-                    $email = $_POST["email"];
-                    $password = $_POST["password"];
-                }
-                ?>
             </div>
         </div>
     </section>
