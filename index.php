@@ -4,6 +4,21 @@
   <link rel="stylesheet" href="index.css">
   <title>Login</title>
 </head>
+<script>
+    <?php
+        if (isset($_GET['error'])) {
+    ?>
+        var errorMessage = "<?php echo $_GET['error']; ?>";
+        if (errorMessage !== "") {
+            var errorDiv = document.getElementById("error-message");
+            errorDiv.innerText = errorMessage;
+            errorDiv.style.display = "block";
+        }
+    <?php
+        }
+    ?>
+</script>
+
 <body>
     <section>
         <div class="form-box">
@@ -27,6 +42,9 @@
                     <button id="loginButton" type="submit">Login</button>
                     <div class="register">
                         <p>Don't have a account <a href="Register.php">Register</a></p>
+                    </div>
+                    <div id="error-message" class="error-message" style="display:none;">
+                    Login failed. Please check your email and password.
                     </div>
                 </form>
             </div>

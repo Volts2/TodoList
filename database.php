@@ -21,10 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) == 1) {
-        header("Location: forget.php");
+        header("Location: To do\index.php");
         exit();
     } else {
-        
+        header("Location: index.php?error=Login failed. Please check your email and password.");
     }    
 }
 
