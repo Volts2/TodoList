@@ -5,6 +5,7 @@
 </head>
 <body>
 <h1>Task List</h1>
+<a href="../index.php">log out</a>
 
 <h2>Add Task</h2>
 <form action="index.php" method="post">
@@ -16,7 +17,14 @@
 
 <ul>
 <?php
+    session_start();
+    $user_id = $_SESSION['user_id'];
+
     $conn = new mysqli('localhost', 'root', '1', 'task_tracker');
+
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }    
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -27,7 +35,7 @@
         $description = $_POST['description'];
         $due_date = $_POST['due_date'];
 
-        $sql = "INSERT INTO tasks (title, description, due_date) VALUES ('$title', '$description', '$due_date')";
+        $sql = "INSERT INTO tasks (title, description, due_date, user_id) VALUES ('$title', '$description', '$due_date', '$user_id')";
         $conn->query($sql);
     }
 
@@ -42,11 +50,11 @@
     if (isset($_GET['delete'])) {
         $task_id = $_GET['delete'];
 
-        $sql = "DELETE FROM tasks WHERE id = $task_id";
+        $sql = "DELETE FROM tasks WHERE id = $task_id AND user_id = $user_id";
         $conn->query($sql);
-    }
+    }    
 
-    $sql = "SELECT * FROM tasks ORDER BY status ASC, due_date ASC";
+    $sql = "SELECT * FROM tasks WHERE user_id = '$user_id' ORDER BY status ASC, due_date ASC"; // Hanya menampilkan tugas pengguna yang sedang login
     $result = $conn->query($sql);
 
     while ($row = $result->fetch_assoc()) {

@@ -1,8 +1,8 @@
 <?php
-$host = "localhost"; 
-$username = "root"; 
-$password = "1"; 
-$database = "login"; 
+$host = "localhost";
+$username = "root";
+$password = "1";
+$database = "task_tracker";
 
 $conn = mysqli_connect($host, $username, $password, $database);
 
@@ -15,20 +15,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    $checkQuery = "SELECT * FROM tb_user WHERE username = '$username' OR email = '$email'";
+    // Hash kata sandi sebelum menyimpannya
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    $checkQuery = "SELECT * FROM users WHERE username = '$username' OR email = '$email'";
     $result = mysqli_query($conn, $checkQuery);
 
     if (mysqli_num_rows($result) > 0) {
+        $errorMessage = "Username or email already in use.";
     } else {
-        $sql = "INSERT INTO tb_user (username, email, password) VALUES ('$username', '$email', '$password')";
+        $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashedPassword')";
 
         if (mysqli_query($conn, $sql)) {
-
+            // Pendaftaran berhasil, Anda dapat mengarahkan pengguna ke halaman lain
+            header("Location: index.php");
+            exit();
         } else {
             $errorMessage = "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }        
+        }
     }
 }
+
 mysqli_close($conn);
 ?>
 

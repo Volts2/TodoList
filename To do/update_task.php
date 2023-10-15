@@ -1,9 +1,10 @@
 <?php
-// Ambil data dari form
+// Mulai sesi untuk mengidentifikasi pengguna yang login
+session_start();
+$user_id = $_SESSION['user_id']; // Dapatkan user_id pengguna yang login
+
+// Ambil ID tugas dari formulir
 $id = $_POST['id'];
-$title = $_POST['title'];
-$description = $_POST['description'];
-$due_date = $_POST['due_date'];
 
 $conn = new mysqli('localhost', 'root', '1', 'task_tracker');
 
@@ -11,12 +12,13 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "UPDATE tasks SET title = '$title', description = '$description', due_date = '$due_date' WHERE id = $id";
-if ($conn->query($sql) === TRUE) {
-    header("Location: index.php");
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
+// Perbarui status tugas tanpa memeriksa izin pengguna
+$new_status = $_POST['new_status'];
+
+$sql = "UPDATE tasks SET status = '$new_status' WHERE id = $id";
+$conn->query($sql);
+
+header("Location: index.php"); // Redirect kembali ke halaman tugas setelah pembaruan
 
 $conn->close();
 ?>

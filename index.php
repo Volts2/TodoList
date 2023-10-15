@@ -1,30 +1,51 @@
+<?php
+$host = "localhost";
+$username = "root";
+$password = "1";
+$database = "task_tracker";
+
+$conn = mysqli_connect($host, $username, $password, $database);
+
+if (!$conn) {
+    die("Koneksi gagal: " . mysqli_connect_error());
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="stylesheet" href="index.css">
   <title>Login</title>
 </head>
-<script>
-    <?php
-        if (isset($_GET['error'])) {
-    ?>
-        var errorMessage = "<?php echo $_GET['error']; ?>";
-        if (errorMessage !== "") {
-            var errorDiv = document.getElementById("error-message");
-            errorDiv.innerText = errorMessage;
-            errorDiv.style.display = "block";
-        }
-    <?php
-        }
-    ?>
-</script>
-
 <body>
     <section>
         <div class="form-box">
             <div class="form-value">
-            <form action="database.php" method="post">
+                <form action="" method="post">
                     <h2>Login</h2>
+                    <?php
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        $email = $_POST["email"];
+                        $password = $_POST["password"];
+                    
+                        $email = mysqli_real_escape_string($conn, $email);
+                    
+                        $query = "SELECT id, password FROM users WHERE email = '$email'";
+                        $result = mysqli_query($conn, $query);
+                    
+                        if ($row = mysqli_fetch_assoc($result)) {
+                            if (password_verify($password, $row["password"])) {
+                                session_start();
+                                $_SESSION["user_id"] = $row["id"];
+                                header("Location: To do\index.php");
+                                exit();
+                            }
+                        }
+                    
+                        echo '<div class="error-notification">Wrong Email Or Password</div>';
+                    }
+                    mysqli_close($conn);
+                    ?>
+
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
                         <input type="email" required name="email">
@@ -37,14 +58,10 @@
                     </div>
                     <div class="forget">
                         <label> <a href="forget.php">Forget Password</a> </label>
-                      
                     </div>
                     <button id="loginButton" type="submit">Login</button>
                     <div class="register">
-                        <p>Don't have a account <a href="Register.php">Register</a></p>
-                    </div>
-                    <div id="error-message" class="error-message" style="display:none;">
-                    Login failed. Please check your email and password.
+                        <p>Don't have an account? <a href="Register.php">Register</a></p>
                     </div>
                 </form>
             </div>
