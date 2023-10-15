@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2023 at 08:29 AM
+-- Generation Time: Oct 15, 2023 at 01:10 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -32,8 +32,16 @@ CREATE TABLE `tasks` (
   `title` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `due_date` date DEFAULT NULL,
-  `status` enum('Not Started','In Progress','Waiting On','Done') DEFAULT 'Not Started'
+  `status` enum('Not Started','In Progress','Waiting On','Done') DEFAULT 'Not Started',
+  `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `title`, `description`, `due_date`, `status`, `user_id`) VALUES
+(21, '1', '1', '0000-00-00', 'Not Started', 3);
 
 -- --------------------------------------------------------
 
@@ -53,7 +61,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
-(1, 'ex_apple1', 'zell@gmail.com', '123');
+(1, 'ex_apple1', 'zell@gmail.com', '$2y$10$N.rq440efzID.ZK8iG2bHesPZ04Cr387AZ2s6wLQc4T1ToB9e5sDe'),
+(2, 'volts', 'volts008@gmail.com', '$2y$10$/xHY5s6MMkdeDyhF5iPbmOXx2nIIBd/kab5KjmsyqmkFCYautE9Xy'),
+(3, 'aaaa', 'volts8@gmail.com', '$2y$10$Qj1W1QY12tVgSaiJ/OpWWOhd.Nh0WPp883FqSSGom8W1WKfZLYPK6');
 
 --
 -- Indexes for dumped tables
@@ -79,13 +89,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
