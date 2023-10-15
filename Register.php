@@ -9,34 +9,6 @@ $conn = mysqli_connect($host, $username, $password, $database);
 if (!$conn) {
     die("Koneksi gagal: " . mysqli_connect_error());
 }
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-
-    // Hash kata sandi sebelum menyimpannya
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-    $checkQuery = "SELECT * FROM users WHERE username = '$username' OR email = '$email'";
-    $result = mysqli_query($conn, $checkQuery);
-
-    if (mysqli_num_rows($result) > 0) {
-        $errorMessage = "Username or email already in use.";
-    } else {
-        $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashedPassword')";
-
-        if (mysqli_query($conn, $sql)) {
-            // Pendaftaran berhasil, Anda dapat mengarahkan pengguna ke halaman lain
-            header("Location: index.php");
-            exit();
-        } else {
-            $errorMessage = "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
-    }
-}
-
-mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +23,32 @@ mysqli_close($conn);
             <div class="form-value">
                 <form action="Register.php" method="post">
                     <h2>Register</h2>
+                    <?php
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        $username = $_POST["username"];
+                        $email = $_POST["email"];
+                        $password = $_POST["password"];
+                    
+                        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+                    
+                        $checkQuery = "SELECT * FROM users WHERE username = '$username' OR email = '$email'";
+                        $result = mysqli_query($conn, $checkQuery);
+                    
+                        if (mysqli_num_rows($result) > 0) {
+                            echo '<div class="error-notification">Pls Change Username Or Email UwU</div>';
+                        } else {
+                            $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashedPassword')";
+                  
+                            if (mysqli_query($conn, $sql)) {
+                                header("Location: index.php");
+                                exit();
+                            } else {
+                                $errorMessage = "Error: " . $sql . "<br>" . mysqli_error($conn);
+                            }
+                        }
+                    }
+                    mysqli_close($conn);
+                    ?>
                     <div class="inputbox">
                         <ion-icon name="person-outline"></ion-icon>
                         <input type="text" required name="username" id="username">
