@@ -6,7 +6,7 @@ $user_id = $_SESSION['user_id']; // Dapatkan user_id pengguna yang login
 // Ambil ID tugas dari formulir
 $id = $_POST['id'];
 
-$conn = new mysqli('localhost', 'root', '1', 'task_tracker');
+$conn = new mysqli('localhost', 'root', '', 'task_tracker');
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

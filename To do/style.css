@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.bg{
+    background-color: crimson;
+}
+
+.navbar{
+    padding-bottom: 0;
+}
+button.navbar-toggler:focus{
+    box-shadow: none;
+}
+
+@media(max-width:767px){
+    .ul-bg{
+        background-color: coral;
+    }
+}
+
+nav .nav-item a:hover{
+    color: greenyellow !important;
+}
+

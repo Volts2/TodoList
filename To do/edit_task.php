@@ -6,7 +6,7 @@ $user_id = $_SESSION['user_id']; // Dapatkan user_id pengguna yang login
 // Ambil ID tugas dari URL
 $id = $_GET['id'];
 
-$conn = new mysqli('localhost', 'root', '1', 'task_tracker');
+$conn = new mysqli('localhost', 'root', '', 'task_tracker');
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -36,20 +36,64 @@ if ($result->num_rows > 0) {
             echo "Error updating task: " . $conn->error;
         }
     }
-    
+
     // Menampilkan formulir pengeditan tugas
-    ?>
-    <form action="edit_task.php?id=<?php echo $id; ?>" method="post">
-        <input type="hidden" name="id" value="<?php echo $id; ?>">
-        Title: <input type="text" name="title" value="<?php echo $title; ?>"><br>
-        Description: <textarea name="description"><?php echo $description; ?></textarea><br>
-        Due Date: <input type="date" name="due_date" value="<?php echo $due_date; ?>"><br>
-        <input type="submit" value="Save Changes">
-    </form>
-    <?php
+?>
+
+<?php
 } else {
     echo "Task not found or you don't have permission to edit it.";
 }
 
 $conn->close();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg">
+        <a href="" class="navbar-brand fs-3 ms-3 text-white"></a>
+        <button class="navbar-toggler me-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#btn"><i class='bx bx-menu bx-md'></i></button>
+        <div class="collapse navbar-collapse ul-bg" id="btn">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="index.php" class="nav-link mx-3 text-white fs-5">Task List</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.php" class="nav-link mx-3 text-white fs-5">logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <form action="edit_task.php?id=<?php echo $id; ?>" method="post">
+        <div class="container rounded" style="max-width: 500px; border: solid 2px rgb(149, 145, 145); margin-top:10%;">
+            <h2>Edit Task</h2>
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
+            <div class="input-group input-group-sm mb-3">
+                <!-- <span class="input-group-text" id="inputGroup-sizing-sm">Small</span> -->
+                <label style="margin-right: 5px;">Title : </label>
+                <input type="text" class="form-control" name="title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="<?php echo $title; ?>">
+            </div>
+            <div class="input-group mb-3">
+                <!-- <span class="input-group-text">With textarea</span> -->
+                <label style="margin-right: 5px;">Description : </label>
+                <textarea class="form-control" name="description" aria-label="With textarea"><?php echo $description; ?></textarea>
+            </div>
+            <div class="input-group mb-3">
+                <label style="margin-right: 5px;">Due Date : </label>
+                <input type="date" name="due_date" style="border: solid 2px rgb(149, 145, 145);" value="<?php echo $due_date; ?>">
+            </div>
+            <input type="submit" value="Save Changes" style="margin-bottom: 5px;margin-left:20%;margin-right:20%;border: solid 2px rgb(149, 145, 145);">
+    </div>
+    </form>
+</body>
+</html>

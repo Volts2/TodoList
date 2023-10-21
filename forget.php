@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $host = "localhost";
     $username = "root";
-    $password = "1";
+    $password = "";
     $database = "task_tracker";
 
     $conn = mysqli_connect($host, $username, $password, $database);

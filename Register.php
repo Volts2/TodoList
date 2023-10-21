@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $username = "root";
-$password = "1";
+$password = "";
 $database = "task_tracker";
 
 $conn = mysqli_connect($host, $username, $password, $database);
@@ -51,18 +51,18 @@ if (!$conn) {
                     ?>
                     <div class="inputbox">
                         <ion-icon name="person-outline"></ion-icon>
-                        <input type="text" required name="username" id="username">
-                        <label for="">Username</label>
+                        <input type="text" required name="username" id="username" placeholder="Username">
+                        <!-- <label for="">Username</label> -->
                     </div>
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" required name="email" id="email">
-                        <label for="">Email</label>
+                        <input type="email" required name="email" id="email" placeholder="Email">
+                        <!-- <label for="">Email</label> -->
                     </div>
                     <div class="inputbox">
-                        <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" required name="password" id="password">
-                        <label for="">Password</label>
+                        <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
+                        <input type="password" required name="password" id="password" placeholder="Password">
+                        <!-- <label for="">Password</label> -->
                     </div>
                     <button id="registerButton" type="submit" name="registerButton">Register</button>
                     <div class="register">
