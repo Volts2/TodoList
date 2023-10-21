@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2023 at 01:10 PM
+-- Generation Time: Oct 21, 2023 at 05:13 PM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- PHP Version: 8.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,9 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `title`, `description`, `due_date`, `status`, `user_id`) VALUES
-(21, '1', '1', '0000-00-00', 'Not Started', 3);
+(21, '1', '1', '0000-00-00', 'Not Started', 3),
+(36, 'asdsad', 'dsadasd', '2023-10-12', 'Not Started', 4),
+(37, 'sdfdsfsdafas', 'dsfdsfasfdsfadsafsdafasdfadsafffffffffffffffffffff', '2023-10-14', 'Not Started', 4);
 
 -- --------------------------------------------------------
 
@@ -63,7 +65,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
 (1, 'ex_apple1', 'zell@gmail.com', '$2y$10$N.rq440efzID.ZK8iG2bHesPZ04Cr387AZ2s6wLQc4T1ToB9e5sDe'),
 (2, 'volts', 'volts008@gmail.com', '$2y$10$/xHY5s6MMkdeDyhF5iPbmOXx2nIIBd/kab5KjmsyqmkFCYautE9Xy'),
-(3, 'aaaa', 'volts8@gmail.com', '$2y$10$Qj1W1QY12tVgSaiJ/OpWWOhd.Nh0WPp883FqSSGom8W1WKfZLYPK6');
+(3, 'aaaa', 'volts8@gmail.com', '$2y$10$Qj1W1QY12tVgSaiJ/OpWWOhd.Nh0WPp883FqSSGom8W1WKfZLYPK6'),
+(4, 'joko kopling', 'joko@gmail.com', '$2y$10$KOB7bJ6zIYdH8DpnUOoaOuTamAxRST9iky8chpY5.Cml/8Ai/5J1S');
 
 --
 -- Indexes for dumped tables
@@ -89,13 +92,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
