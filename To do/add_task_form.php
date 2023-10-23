@@ -10,20 +10,24 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md bg">
-        <a href="" class="navbar-brand fs-3 ms-3 text-white"></a>
-        <button class="navbar-toggler me-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#btn"><i class='bx bx-menu bx-md'></i></button>
-        <div class="collapse navbar-collapse ul-bg" id="btn">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a href="index.php" class="nav-link mx-3 text-white fs-5">Task List</a>
-                </li>
-                <li class="nav-item">
-                    <a href="../index.php" class="nav-link mx-3 text-white fs-5">logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-md bg">
+    <a href="index.php" class="navbar-brand fs-3 ms-3 text-white">
+        <img src="logo.png" alt="Logo" class="logo">
+    </a>
+    <button class="navbar-toggler me-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#btn">
+        <i class='bx bx-menu bx-md'></i>
+    </button>
+    <div class="collapse navbar-collapse ul-bg" id="btn">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a href="index.php" class="nav-link mx-3 text-white fs-5">See Your Task</a>
+            </li>
+            <li class="nav-item">
+                <a href="../index.php" class="nav-link mx-3 text-white fs-5">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
     <!-- <h2>Add Task</h2>
     <form action="index.php" method="post">
         Title: <input type="text" name="title"><br>
