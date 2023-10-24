@@ -37,25 +37,24 @@
     </form> -->
     
     <form action="index.php" method="post">
-        <div class="container rounded" style="max-width: 500px; border: solid 2px rgb(149, 145, 145); margin-top:10%;">
-            <h2>Add Task</h2>
-            <div class="input-group input-group-sm mb-3">
-                <!-- <span class="input-group-text" id="inputGroup-sizing-sm">Small</span> -->
-                <label style="margin-right: 5px;">Title : </label>
-                <input type="text" class="form-control" name="title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-            <div class="input-group mb-3">
-                <!-- <span class="input-group-text">With textarea</span> -->
-                <label style="margin-right: 5px;">Description : </label>
-                <textarea class="form-control" name="description" aria-label="With textarea"></textarea>
-            </div>
-            <div class="input-group mb-3">
-                <label style="margin-right: 5px;">Due Date : </label>
-                <input type="date" name="due_date" style="border: solid 2px rgb(149, 145, 145);">
-            </div>
-           <input type="submit" name="newTask" value="Add Task" style="margin-bottom: 5px;margin-left:20%;margin-right:20%;border: solid 2px rgb(149, 145, 145);">
+    <div class="container rounded" style="max-width: 500px; border: solid 2px rgb(149, 145, 145); margin-top:10%;">
+        <h2>Add Task</h2>
+        <div class="input-group input-group-sm mb-3">
+            <label style="margin-right: 5px;">Title : </label>
+            <input type="text" class="form-control" name="title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
-    </form>
+        <div class="input-group mb-3">
+            <label style="margin-right: 5px;">Description : </label>
+            <textarea class="form-control" name="description" aria-label="With textarea"></textarea>
+        </div>
+        <div class="input-group mb-3">
+            <label style="margin-right: 5px;">Due Date : </label>
+            <input type="date" name="due_date" style="border: solid 2px rgb(149, 145, 145); border-radius: 5px;">
+        </div>
+        <input type="submit" name="newTask" value="Add Task" style="margin-bottom: 5px;margin-left:20%;margin-right:20%;border: solid 2px rgb(149, 145, 145); border-radius: 5px; width:68px;">
+    </div>
+</form>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
