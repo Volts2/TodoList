@@ -12,7 +12,7 @@
 <body>
 <nav class="navbar navbar-expand-md bg">
     <a href="index.php" class="navbar-brand fs-3 ms-3 text-white">
-        <img src="logo.png" alt="Logo" class="logo">
+        <!-- <img src="logo.png" alt="Logo" class="logo"> -->
     </a>
     <button class="navbar-toggler me-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#btn">
         <i class='bx bx-menu bx-md'></i>

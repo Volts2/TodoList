@@ -61,7 +61,7 @@ $conn->close();
 <body>
 <nav class="navbar navbar-expand-md bg">
     <a href="index.php" class="navbar-brand fs-3 ms-3 text-white">
-        <img src="logo.png" alt="Logo" class="logo">
+        <!-- <img src="logo.png" alt="Logo" class="logo"> -->
     </a>
     <button class="navbar-toggler me-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#btn">
         <i class='bx bx-menu bx-md'></i>
@@ -96,7 +96,7 @@ $conn->close();
                 <label style="margin-right: 5px;">Due Date : </label>
                 <input type="date" name="due_date" style="border: solid 2px rgb(149, 145, 145);" value="<?php echo $due_date; ?>">
             </div>
-            <input type="submit" value="Save Changes" style="margin-bottom: 5px;margin-left:20%;margin-right:20%;border: solid 2px rgb(149, 145, 145);">
+            <input type="submit" value="Save Changes" style="margin-bottom: 5px;margin-left:20%;margin-right:20%;border: solid 2px rgb(149, 145, 145);border-radius: 5px;">
     </div>
     </form>
 </body>

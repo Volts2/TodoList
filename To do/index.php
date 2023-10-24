@@ -8,27 +8,29 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 </head>
 
 <body>
-<nav class="navbar navbar-expand-md bg">
-    <a href="index.php" class="navbar-brand fs-3 ms-3 text-white">
-        <img src="logo.png" alt="Logo" class="logo">
-    </a>
-    <button class="navbar-toggler me-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#btn">
-        <i class='bx bx-menu bx-md'></i>
-    </button>
-    <div class="collapse navbar-collapse ul-bg" id="btn">
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-                <a href="add_task_form.php" class="nav-link mx-3 text-white fs-5">Add Task</a>
-            </li>
-            <li class="nav-item">
-                <a href="../index.php" class="nav-link mx-3 text-white fs-5">Logout</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+    <nav class="navbar navbar-expand-md bg">
+        <a href="index.php" class="navbar-brand fs-3 ms-3 text-white">
+            <!-- <img src="#" alt="Logo" class="logo"> -->
+        </a>
+        <button class="navbar-toggler me-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#btn">
+            <i class='bx bx-menu bx-md'></i>
+        </button>
+        <div class="collapse navbar-collapse ul-bg" id="btn">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="add_task_form.php" class="nav-link mx-3 text-white fs-5">Add Task</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.php" class="nav-link mx-3 text-white fs-5">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
 
     <!-- <h1>Task List</h1> -->
@@ -46,10 +48,37 @@
     <div class="container mt-5">
         <h2>Task List</h2>
         <div class="table-responsive">
+            <table class="table table-striped" style="width:100%">
+                <style>
+                    .table-striped .description-column {
+                        max-width: 400px;
+                        word-wrap: break-word;
+                    }
 
-            <table class="table">
+                    .table {
+                        border: 2px solid #ccc;
+                        border-collapse: collapse;
+                    }
+
+                    .table th,
+                    .table td {
+                        border: 2px solid #ccc;
+                        padding: 8px;
+                    }
+
+                    .table-header {
+                        border: 2px solid #ccc;
+                        background-color: #f8f9fa;
+                        /* Warna latar belakang header */
+                    }
+
+                    .table-header th {
+                        /* border-bottom: 2px solid #ccc; */
+                        /* Garis di bawah kolom thead */
+                    }
+                </style>
                 <thead>
-                    <tr>
+                    <tr class="table-header">
                         <th>Title</th>
                         <th>Description</th>
                         <th>Due Date</th>
@@ -102,7 +131,7 @@
                     while ($row = $result->fetch_assoc()) {
                         echo '<tr>';
                         echo '<td>' . $row['title'] . '</td>';
-                        echo '<td>' . $row['description'] . '</td>';
+                        echo '<td class="description-column">' . $row['description'] . '</td>';
                         echo '<td>' . $row['due_date'] . '</td>';
                         echo '<td>' . $row['status'] . '</td>';
                         echo '<td class="d-flex align-items-center">';
@@ -115,9 +144,9 @@
                         echo '<option value="Done">Done</option>';
                         echo '</select>';
                         echo '<input type="submit" name="updateStatus" value="Update Status" class="btn btn-primary btn-sm ms-2 mt-2">';
+                        echo '<a href="edit_task.php?id=' . $row['id'] . '" class="btn btn-secondary btn-sm ms-2 mt-2" style="height: 30.6px;">Edit</a>';
+                        echo '<a href="index.php?delete=' . $row['id'] . '" class="btn btn-danger btn-sm ms-2 mt-2" style="height: 30.6px;">Delete</a>';
                         echo '</form>';
-                        echo '<a href="edit_task.php?id=' . $row['id'] . '" class="btn btn-secondary btn-sm ms-2">Edit</a>';
-                        echo '<a href="index.php?delete=' . $row['id'] . '" class="btn btn-danger btn-sm ms-2">Delete</a>';
                         echo '</td>';
                         echo '</tr>';
                     }
@@ -130,6 +159,11 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!--jquery-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <!--DataTables-->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 </body>
 
 </html>
