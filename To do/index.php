@@ -60,7 +60,9 @@
                         border-collapse: collapse;
                     }
 
-                    .table th,
+                    .table th{
+                        border: none;
+                    }
                     .table td {
                         border: 2px solid #ccc;
                         padding: 8px;
